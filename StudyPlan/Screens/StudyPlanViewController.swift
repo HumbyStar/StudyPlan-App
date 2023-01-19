@@ -56,7 +56,6 @@ class StudyPlanViewController: UIViewController{
         return button
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewCode()
@@ -118,7 +117,6 @@ extension StudyPlanViewController: ViewCode {
     }
     
     func extraFeatures() {
-        print("")
         view.backgroundColor = .white
         title = "Cadastrar"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -126,6 +124,16 @@ extension StudyPlanViewController: ViewCode {
         navigationController?.navigationBar.largeTitleTextAttributes = attributes
         dpDate.minimumDate = Date()
         btConfirm.addTarget(self, action: #selector(schedule), for: .touchUpInside)
+    }
+}
+
+extension StudyPlanViewController: UIPickerViewDataSource,UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 0
     }
     
     
