@@ -21,4 +21,8 @@ class StudyPlan: Codable {
         self.done = done
         self.id = id
     }
+    
+    func scheduleForgettingCurve() {
+        let date = date
+    }
 }

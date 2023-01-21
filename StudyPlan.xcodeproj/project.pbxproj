@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C0C6A9E2979A1A7003BC8C2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0C6A9D2979A1A7003BC8C2 /* HomeViewController.swift */; };
+		0C0C6AE5297AF4A0003BC8C2 /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0C6AE4297AF4A0003BC8C2 /* MyCell.swift */; };
 		0C64DE5329798E34006463A0 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C64DE5229798E34006463A0 /* CustomTabBarController.swift */; };
 		0C64DE5529798F1F006463A0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C64DE5429798F1F006463A0 /* Settings.bundle */; };
 		0C64DE5729798F2E006463A0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C64DE5629798F2E006463A0 /* SettingsViewController.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C0C6A9D2979A1A7003BC8C2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0C0C6AE4297AF4A0003BC8C2 /* MyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
 		0C64DE5229798E34006463A0 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		0C64DE5429798F1F006463A0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		0C64DE5629798F2E006463A0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C0C6AE3297AF438003BC8C2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0C0C6AE4297AF4A0003BC8C2 /* MyCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		0CA293842975C919008DBC7D = {
 			isa = PBXGroup;
 			children = (
@@ -92,9 +104,11 @@
 		0CA293A52975C93F008DBC7D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				0CA293942975C919008DBC7D /* StudyPlanViewController.swift */,
+				0C0C6AE3297AF438003BC8C2 /* Cell */,
 				0C64DE5229798E34006463A0 /* CustomTabBarController.swift */,
+				0C0C6A9D2979A1A7003BC8C2 /* HomeViewController.swift */,
 				0CA293BB29760DFD008DBC7D /* StudyPlanTableViewController.swift */,
+				0CA293942975C919008DBC7D /* StudyPlanViewController.swift */,
 				0C64DE5629798F2E006463A0 /* SettingsViewController.swift */,
 			);
 			path = Screens;
@@ -193,6 +207,8 @@
 				0C64DE5329798E34006463A0 /* CustomTabBarController.swift in Sources */,
 				0CA293B42975D37B008DBC7D /* ViewCode.swift in Sources */,
 				0CA293912975C919008DBC7D /* AppDelegate.swift in Sources */,
+				0C0C6AE5297AF4A0003BC8C2 /* MyCell.swift in Sources */,
+				0C0C6A9E2979A1A7003BC8C2 /* HomeViewController.swift in Sources */,
 				0CA293BC29760DFD008DBC7D /* StudyPlanTableViewController.swift in Sources */,
 				0CA293932975C919008DBC7D /* SceneDelegate.swift in Sources */,
 				0CA293AF2975CF73008DBC7D /* StudyManager.swift in Sources */,

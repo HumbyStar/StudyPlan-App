@@ -20,20 +20,23 @@ class CustomTabBarController: UITabBarController {
         //Instantiate ViewController
         let studyPlanTVC = StudyPlanTableViewController()
         let settingsVC = SettingsViewController()
+        let homeVC = HomeViewController()
         
         //Change Titles
         studyPlanTVC.title = "Planos de Estudo"
         settingsVC.title = "Configurações"
+        homeVC.title = "Home"
         
         //Associate ViewControllers to a NavigationController
         let firstNavigation = UINavigationController(rootViewController: studyPlanTVC)
         let secondNavigation = UINavigationController(rootViewController: settingsVC)
+        let thirdNavigation = UINavigationController(rootViewController: homeVC)
         
     
         //Associate TabBar to NavigationController
-        self.viewControllers = [firstNavigation,secondNavigation]
+        self.viewControllers = [thirdNavigation,firstNavigation,secondNavigation]
         
         //Define third configuration
-        self.tabBar.tintColor = .black
+        self.tabBar.tintColor = .purple
     }
 }

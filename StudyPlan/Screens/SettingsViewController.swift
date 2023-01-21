@@ -18,7 +18,7 @@ class SettingsViewController: UIViewController {
     func prepareView() {
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
-        let attribute = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        let attribute = [NSAttributedString.Key.foregroundColor: UIColor.purple, NSAttributedString.Key.font: UIFont(name: "Georgia", size: 30)]
         navigationController?.navigationBar.largeTitleTextAttributes = attribute
         title = "Configurações"
     }

@@ -20,10 +20,18 @@ class StudyPlanTableViewController: UITableViewController {
         return formatter
     }()
     
+    let image: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "amico")
+        return image
+    }()
+   
     lazy var lbText: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = .orange
+        label.textColor = .purple
+        label.font = UIFont(name: "SF Mono", size: 16)
         label.numberOfLines = 2
         return label
     }()
@@ -36,6 +44,9 @@ class StudyPlanTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(image)
+        NSLayoutConstraint.activate([
+            image.centerYAnchor.constraint(equalTo: view.centerYAnchor),image.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
         NotificationCenter.default.addObserver(self, selector: #selector(onReceived(notification:)), name: NSNotification.Name("Confirmed"), object: nil)
         prepareView()
     }
@@ -102,7 +113,7 @@ class StudyPlanTableViewController: UITableViewController {
     func prepareView() {
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
-        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.purple, NSAttributedString.Key.font: UIFont(name: "Georgia", size: 30)!]
         navigationController?.navigationBar.largeTitleTextAttributes = attributes
         title = "Planos de Estudo"
         let btPlus = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(push))
@@ -121,6 +132,7 @@ class StudyPlanTableViewController: UITableViewController {
             tableView.backgroundView = lbText
         } else {
             lbText.text = nil
+            image.image = nil
         }
         
         return sm.studyPlan.count

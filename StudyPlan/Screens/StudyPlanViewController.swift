@@ -33,7 +33,7 @@ class StudyPlanViewController: UIViewController{
     
     var textDatePicker: UILabel = {
         let textlabel = UILabel()
-        textlabel.textColor = .orange
+        textlabel.textColor = .purple
         textlabel.text = "Data de estudo"
         textlabel.translatesAutoresizingMaskIntoConstraints = false
         return textlabel
@@ -51,7 +51,7 @@ class StudyPlanViewController: UIViewController{
         let button = UIButton()
         button.setTitle("Cadastrar Aula", for: .normal)
         button.tintColor = .white
-        button.backgroundColor = .orange
+        button.backgroundColor = .purple
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
