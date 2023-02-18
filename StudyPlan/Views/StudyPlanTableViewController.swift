@@ -8,19 +8,31 @@
 import UIKit
 import UserNotifications
 
-class StudyPlanTableViewController: UITableViewController {
+final class StudyPlanTableViewController: UITableViewController {
     let ud = UserDefaults.standard
     let sm = StudyManager.shared
 
     let center = UNUserNotificationCenter.current()
     
-    var dateFormatter: DateFormatter = {
+    lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yy HH:mm"
         return formatter
     }()
     
-    let image: UIImageView = {
+    lazy var verticalStack: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [lbText, image])
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
+        stackView.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: tableView.topAnchor,constant: 100).isActive = true
+        return stackView
+    }()
+    
+    lazy var image: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "amico")
@@ -35,6 +47,7 @@ class StudyPlanTableViewController: UITableViewController {
         label.numberOfLines = 2
         return label
     }()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
@@ -44,11 +57,7 @@ class StudyPlanTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(image)
-        NSLayoutConstraint.activate([
-            image.centerYAnchor.constraint(equalTo: view.centerYAnchor),image.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
-        NotificationCenter.default.addObserver(self, selector: #selector(onReceived(notification:)), name: NSNotification.Name("Confirmed"), object: nil)
-        prepareView()
+        extrasFeatures()
     }
     
     @objc func getNotification() {
@@ -58,7 +67,6 @@ class StudyPlanTableViewController: UITableViewController {
                 
                 //MARK: Só vai configurar a notificação se tiver authorization
                 print("Estamos dentro de NotDetermined")
-                
                 let options: UNAuthorizationOptions = [.alert,.badge,.carPlay,.sound]
                 self.center.requestAuthorization(options: options) { success, error in
                     if error == nil {
@@ -76,7 +84,7 @@ class StudyPlanTableViewController: UITableViewController {
                 print ("Estamos dentro de Authorized")//Agora preciso passar esse valor para a var da table
             }
         }
-        let confirmAction = UNNotificationAction(identifier: "Confirmar", title: "Ja estudei 👍🏻", options: [.foreground])
+        let confirmAction = UNNotificationAction(identifier: "Confirmar", title: "Abrir Notas p/ Revisão 🤩", options: [.foreground])
         let cancelAction = UNNotificationAction(identifier: "Cancelar", title: "Deixar pra depois 👎🏻")
         let category = UNNotificationCategory(identifier:"Lembrete", actions: [confirmAction, cancelAction], intentIdentifiers: [], options: .customDismissAction)
         center.setNotificationCategories([category])
@@ -104,12 +112,12 @@ class StudyPlanTableViewController: UITableViewController {
     
     
     @objc func onReceived(notification: Notification) {
-        if let userInfo = notification.userInfo, let id = userInfo["id"] as? String { // ID recebido de SceneDelegate
+        if let userInfo = notification.userInfo, let id = userInfo["id"] as? String { // Apesar de não precisar usar nesse cenário, esse código seria o utilizado para um interligar as telas como por exemplo um retorno de SceneDelegate
             sm.setDonePlan(id: id)
             tableView.reloadData()
         }
     }
-    
+
     func prepareView() {
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -129,7 +137,9 @@ class StudyPlanTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if sm.studyPlan.count == 0 {
             lbText.text = "Voce não possui nenhum \n estudo programado"
-            tableView.backgroundView = lbText
+            image.image = UIImage(named: "amico")
+            tableView.backgroundView = verticalStack
+            
         } else {
             lbText.text = nil
             image.image = nil
@@ -140,24 +150,14 @@ class StudyPlanTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        if cell == nil {
-            cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
-        }
-        
-        guard let cell = cell else {return UITableViewCell()}
+        tableView.register(StudyNoteCell.self, forCellReuseIdentifier: "cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! StudyNoteCell
 
-        let studyPlan = sm.studyPlan[indexPath.row]
+        let studyPlan = sm.studyPlan[indexPath.row] // Acho que terei que passar pra celula
         cell.backgroundColor = .clear
-        
-        //MARK: preciso mudar o tipo que to mostrando a celula para funcionar o detailTextLabel
-        cell.textLabel?.textColor = .orange
-        cell.textLabel?.text = studyPlan.section
-        cell.detailTextLabel?.textColor = .black
-        cell.detailTextLabel?.text = dateFormatter.string(from: studyPlan.date)
+        cell.update(with: studyPlan)
         cell.backgroundColor = studyPlan.done ? .green : .white
-
+        
         return cell
     }
     
@@ -176,8 +176,7 @@ extension StudyPlanTableViewController: UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let id = response.notification.request.identifier
-        print(id)
-        
+    
         switch response.actionIdentifier {
         case "Confirmar":
             print("Confirmado")
@@ -191,6 +190,17 @@ extension StudyPlanTableViewController: UNUserNotificationCenterDelegate {
         default:
             break
         }
+    }
+}
+
+extension StudyPlanTableViewController: ViewCode {
+    func extrasFeatures() {
+        tableView.separatorStyle = .none
+        
+        tableView.reloadData()
+        NotificationCenter.default.addObserver(self, selector: #selector(onReceived(notification:)), name: NSNotification.Name("Confirmed"), object: nil)
+        
+        prepareView()
     }
 }
 

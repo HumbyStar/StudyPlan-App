@@ -8,7 +8,7 @@
 import Foundation
 import UserNotifications
 
-class StudyManager {
+final class StudyManager {
     static let shared = StudyManager()
     let ud = UserDefaults.standard
     var studyPlan: [StudyPlan] = []

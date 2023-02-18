@@ -5,24 +5,22 @@
 //  Created by Humberto Rodrigues on 16/01/23.
 //
 
-import Foundation
+import UIKit
 
 class StudyPlan: Codable {
-    var course: String
-    var section: String
-    var date: Date
+    let topic: String
+    let subjectName: String
+    let date: Date
     var done: Bool = false
-    var id: String //MARK: ID, PRECISO DO ID, ID ,ID , ID, ID, ID
+    let id: String
+    let note: Note
     
-    init(course: String, section: String, date: Date, done: Bool, id: String) {
-        self.course = course
-        self.section = section
+    init(topic: String, subjectName: String, date: Date, done: Bool, id: String, note: Note) {
+        self.topic = topic
+        self.subjectName = subjectName
         self.date = date
         self.done = done
         self.id = id
-    }
-    
-    func scheduleForgettingCurve() {
-        let date = date
+        self.note = note
     }
 }

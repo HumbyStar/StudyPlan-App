@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     
     let lbTitle: UILabel = {
         let label = UILabel()
@@ -44,7 +44,7 @@ class HomeViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(MyCell.self, forCellWithReuseIdentifier: cellID)
+        collectionView.register(MyCollectionCell.self, forCellWithReuseIdentifier: cellID)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.layer.masksToBounds = false
         collectionView.layer.cornerRadius = 10
@@ -64,21 +64,11 @@ class HomeViewController: UIViewController {
         return tableView
     }()
     
-    /*let LbflashQuestion: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Georgia", size: 22)
-        label.textColor = .purple
-        return label
-    }()*/
-    
-    
-    
     var temporaria = ["Swift","JavaScript","Java","TypeScript","CSharp","Ruby", "Goland"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViewCode()
+        configureViewCode()
     }
     
     func prepareView(){
@@ -91,14 +81,14 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: ViewCode {
-    func viewHierarquic() {
+    func buildHierarchy() {
         view.addSubview(lbTitle)
         view.addSubview(collectionView)
         view.addSubview(lbLanguages)
         view.addSubview(tableView)
     }
     
-    func setContrains() {
+    func setupConstrains() {
         NSLayoutConstraint.activate([
             lbTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
             lbTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -120,7 +110,7 @@ extension HomeViewController: ViewCode {
         ])
     }
     
-    func extraFeatures() {
+    func extrasFeatures() {
         prepareView()
         var myMutableString = NSMutableAttributedString(string: lbTitle.text!, attributes: [NSAttributedString.Key.font: UIFont(name: "Georgia", size: 20)!])
         myMutableString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.purple, range: NSRange(location:0,length:8))

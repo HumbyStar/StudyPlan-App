@@ -8,15 +8,7 @@
 import Foundation
 
 protocol ViewCode {
-    func viewHierarquic()
-    func setContrains()
-    func extraFeatures()
-}
-
-extension ViewCode {
-    func setupViewCode(){
-        viewHierarquic()
-        setContrains()
-        extraFeatures()
-    }
+    func buildHierarchy()
+    func setupConstrains()
+    func extrasFeatures()
 }

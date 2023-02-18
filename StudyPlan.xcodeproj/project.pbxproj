@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C0C6A9E2979A1A7003BC8C2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0C6A9D2979A1A7003BC8C2 /* HomeViewController.swift */; };
-		0C0C6AE5297AF4A0003BC8C2 /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0C6AE4297AF4A0003BC8C2 /* MyCell.swift */; };
+		0C0C6AE5297AF4A0003BC8C2 /* MyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0C6AE4297AF4A0003BC8C2 /* MyCollectionCell.swift */; };
 		0C64DE5329798E34006463A0 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C64DE5229798E34006463A0 /* CustomTabBarController.swift */; };
 		0C64DE5529798F1F006463A0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C64DE5429798F1F006463A0 /* Settings.bundle */; };
 		0C64DE5729798F2E006463A0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C64DE5629798F2E006463A0 /* SettingsViewController.swift */; };
@@ -21,11 +21,19 @@
 		0CA293AF2975CF73008DBC7D /* StudyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA293AE2975CF73008DBC7D /* StudyManager.swift */; };
 		0CA293B42975D37B008DBC7D /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA293B32975D37B008DBC7D /* ViewCode.swift */; };
 		0CA293BC29760DFD008DBC7D /* StudyPlanTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA293BB29760DFD008DBC7D /* StudyPlanTableViewController.swift */; };
+		0CF54CD6299EEFD400AA042F /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF54CD5299EEFD400AA042F /* Note.swift */; };
+		0CF54CDB299F956300AA042F /* ColorCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF54CDA299F956300AA042F /* ColorCollectionCell.swift */; };
+		0CF54CDE299FBFA100AA042F /* ViewCode + Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF54CDD299FBFA100AA042F /* ViewCode + Optional.swift */; };
+		0CF54CE2299FC3C500AA042F /* Enum Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF54CE1299FC3C500AA042F /* Enum Colors.swift */; };
+		0CF54CE7299FDB2900AA042F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF54CE6299FDB2900AA042F /* Colors.swift */; };
+		0CF54CE9299FDB4900AA042F /* ImagesLG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF54CE8299FDB4900AA042F /* ImagesLG.swift */; };
+		0CF54CEB299FDDAE00AA042F /* ImagesCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF54CEA299FDDAE00AA042F /* ImagesCollectionCell.swift */; };
+		0CF54D0D29A00FBC00AA042F /* StudyNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF54D0C29A00FBC00AA042F /* StudyNoteCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0C0C6A9D2979A1A7003BC8C2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		0C0C6AE4297AF4A0003BC8C2 /* MyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
+		0C0C6AE4297AF4A0003BC8C2 /* MyCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionCell.swift; sourceTree = "<group>"; };
 		0C64DE5229798E34006463A0 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		0C64DE5429798F1F006463A0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		0C64DE5629798F2E006463A0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +48,14 @@
 		0CA293AE2975CF73008DBC7D /* StudyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyManager.swift; sourceTree = "<group>"; };
 		0CA293B32975D37B008DBC7D /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
 		0CA293BB29760DFD008DBC7D /* StudyPlanTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyPlanTableViewController.swift; sourceTree = "<group>"; };
+		0CF54CD5299EEFD400AA042F /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		0CF54CDA299F956300AA042F /* ColorCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionCell.swift; sourceTree = "<group>"; };
+		0CF54CDD299FBFA100AA042F /* ViewCode + Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewCode + Optional.swift"; sourceTree = "<group>"; };
+		0CF54CE1299FC3C500AA042F /* Enum Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum Colors.swift"; sourceTree = "<group>"; };
+		0CF54CE6299FDB2900AA042F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		0CF54CE8299FDB4900AA042F /* ImagesLG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesLG.swift; sourceTree = "<group>"; };
+		0CF54CEA299FDDAE00AA042F /* ImagesCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionCell.swift; sourceTree = "<group>"; };
+		0CF54D0C29A00FBC00AA042F /* StudyNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyNoteCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,12 +69,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0C0C6AE3297AF438003BC8C2 /* Cell */ = {
+		0C0C6AE3297AF438003BC8C2 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				0C0C6AE4297AF4A0003BC8C2 /* MyCell.swift */,
+				0C0C6AE4297AF4A0003BC8C2 /* MyCollectionCell.swift */,
+				0CF54CDA299F956300AA042F /* ColorCollectionCell.swift */,
+				0CF54CEA299FDDAE00AA042F /* ImagesCollectionCell.swift */,
+				0CF54D0C29A00FBC00AA042F /* StudyNoteCell.swift */,
 			);
-			path = Cell;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		0CA293842975C919008DBC7D = {
@@ -81,9 +100,12 @@
 			isa = PBXGroup;
 			children = (
 				0CA293A42975C937008DBC7D /* Resources */,
+				0CF54CE5299FDB1700AA042F /* Enums */,
+				0CF54CDC299FBF8A00AA042F /* Extensions */,
 				0CA293B52975D37E008DBC7D /* Protocols */,
 				0CA293B02975CF80008DBC7D /* Model */,
-				0CA293A52975C93F008DBC7D /* Screens */,
+				0CF54CD7299F895800AA042F /* Manager */,
+				0CA293A52975C93F008DBC7D /* Views */,
 				0CA2939E2975C91A008DBC7D /* Info.plist */,
 				0C64DE5429798F1F006463A0 /* Settings.bundle */,
 			);
@@ -101,24 +123,24 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		0CA293A52975C93F008DBC7D /* Screens */ = {
+		0CA293A52975C93F008DBC7D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0C0C6AE3297AF438003BC8C2 /* Cell */,
 				0C64DE5229798E34006463A0 /* CustomTabBarController.swift */,
 				0C0C6A9D2979A1A7003BC8C2 /* HomeViewController.swift */,
 				0CA293BB29760DFD008DBC7D /* StudyPlanTableViewController.swift */,
 				0CA293942975C919008DBC7D /* StudyPlanViewController.swift */,
 				0C64DE5629798F2E006463A0 /* SettingsViewController.swift */,
+				0C0C6AE3297AF438003BC8C2 /* Cells */,
 			);
-			path = Screens;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		0CA293B02975CF80008DBC7D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0CF54CD5299EEFD400AA042F /* Note.swift */,
 				0CA293AC2975CF6B008DBC7D /* StudyPlan.swift */,
-				0CA293AE2975CF73008DBC7D /* StudyManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -129,6 +151,32 @@
 				0CA293B32975D37B008DBC7D /* ViewCode.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		0CF54CD7299F895800AA042F /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				0CA293AE2975CF73008DBC7D /* StudyManager.swift */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		0CF54CDC299FBF8A00AA042F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0CF54CDD299FBFA100AA042F /* ViewCode + Optional.swift */,
+				0CF54CE1299FC3C500AA042F /* Enum Colors.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0CF54CE5299FDB1700AA042F /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				0CF54CE6299FDB2900AA042F /* Colors.swift */,
+				0CF54CE8299FDB4900AA042F /* ImagesLG.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,14 +253,22 @@
 				0CA293AD2975CF6B008DBC7D /* StudyPlan.swift in Sources */,
 				0CA293952975C919008DBC7D /* StudyPlanViewController.swift in Sources */,
 				0C64DE5329798E34006463A0 /* CustomTabBarController.swift in Sources */,
+				0CF54CEB299FDDAE00AA042F /* ImagesCollectionCell.swift in Sources */,
 				0CA293B42975D37B008DBC7D /* ViewCode.swift in Sources */,
 				0CA293912975C919008DBC7D /* AppDelegate.swift in Sources */,
-				0C0C6AE5297AF4A0003BC8C2 /* MyCell.swift in Sources */,
+				0C0C6AE5297AF4A0003BC8C2 /* MyCollectionCell.swift in Sources */,
+				0CF54D0D29A00FBC00AA042F /* StudyNoteCell.swift in Sources */,
 				0C0C6A9E2979A1A7003BC8C2 /* HomeViewController.swift in Sources */,
 				0CA293BC29760DFD008DBC7D /* StudyPlanTableViewController.swift in Sources */,
 				0CA293932975C919008DBC7D /* SceneDelegate.swift in Sources */,
+				0CF54CE7299FDB2900AA042F /* Colors.swift in Sources */,
+				0CF54CE2299FC3C500AA042F /* Enum Colors.swift in Sources */,
 				0CA293AF2975CF73008DBC7D /* StudyManager.swift in Sources */,
+				0CF54CDB299F956300AA042F /* ColorCollectionCell.swift in Sources */,
+				0CF54CE9299FDB4900AA042F /* ImagesLG.swift in Sources */,
 				0C64DE5729798F2E006463A0 /* SettingsViewController.swift in Sources */,
+				0CF54CDE299FBFA100AA042F /* ViewCode + Optional.swift in Sources */,
+				0CF54CD6299EEFD400AA042F /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

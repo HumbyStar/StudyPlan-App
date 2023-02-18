@@ -7,20 +7,18 @@
 
 import UIKit
 
-class MyCell: UICollectionViewCell {
-    
+final class MyCollectionCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        setupViewCode()
+        configureViewCode()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let view: UIView = {
+    let bannerView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
         view.alpha = 0.4
@@ -81,9 +79,9 @@ class MyCell: UICollectionViewCell {
     }()
 }
 
-extension MyCell: ViewCode {
-    func viewHierarquic() {
-        contentView.addSubview(view)
+extension MyCollectionCell: ViewCode {
+    func buildHierarchy() {
+        contentView.addSubview(bannerView)
         contentView.addSubview(lbQuestion)
         contentView.addSubview(lbOption1)
         contentView.addSubview(lbOption2)
@@ -91,13 +89,13 @@ extension MyCell: ViewCode {
         contentView.addSubview(lbOption4)
     }
     
-    func setContrains() {
+    func setupConstrains() {
         NSLayoutConstraint.activate([
             
-            view.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 5),
-            view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 5),
-            view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -70),
-            view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -160),
+            bannerView.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 5),
+            bannerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 5),
+            bannerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -70),
+            bannerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -160),
             
             lbQuestion.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             lbQuestion.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 20),
@@ -122,7 +120,7 @@ extension MyCell: ViewCode {
         ])
     }
     
-    func extraFeatures() {
+    func extrasFeatures() {
         print("")
     }
     
