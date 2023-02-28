@@ -11,53 +11,47 @@ final class ColorCollectionCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-            configureViewCode()
+       configureViewCode()
     }
+    
+    lazy var noteView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var onUpdate: (Colors) -> Void = {_ in }
-    
     override var isSelected: Bool {
         didSet {
-            backgroundColor = isSelected ? UIColor.systemGroupedBackground : .clear
+            self.backgroundColor = isSelected ? UIColor.systemPurple : .clear
         }
     }
     
-    lazy var color: Colors = .black {
-        didSet {
-            btChoosedColor.backgroundColor = color.value
-        }
+    //Ao invés de chamar uma função também posso fazer com variavel computada.
+//    lazy var color: Colors = .black {
+//        didSet {
+//            self.noteView.backgroundColor = color.value
+//        }
+//    }
+    
+    func setupCell(with color: UIColor) {
+        self.noteView.backgroundColor = color
     }
-    
-    lazy var btChoosedColor: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(nil, for: .normal)
-        button.addTarget(StudyPlanViewController(), action: #selector(showColor), for: .touchUpInside)
-        return button
-    }()
-    
-    @objc func showColor() {
-        onUpdate(color)
-    }
-    
 }
 
 extension ColorCollectionCell: ViewCode {
-    
     func buildHierarchy() {
-        addSubview(btChoosedColor)
+        contentView.addSubview(noteView)
     }
     func setupConstrains() {
         NSLayoutConstraint.activate([
-            btChoosedColor.topAnchor.constraint(equalTo: self.topAnchor),
-            btChoosedColor.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            btChoosedColor.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            btChoosedColor.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            self.noteView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.noteView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            self.noteView.heightAnchor.constraint(equalToConstant: 50),
+            self.noteView.widthAnchor.constraint(equalToConstant: 50)
         ])
-        
     }
 }

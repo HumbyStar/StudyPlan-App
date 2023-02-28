@@ -12,8 +12,10 @@ final class StudyPlanViewController: UIViewController{
     
     var colors: [Colors] = [.red, .black, .green, .purple, .orange, .yellow]
     var images: [ImagesLG] = [.CSharp,.Goland,.Java,.JavaScript,.Swift,.Ruby,.TypeScript]
-    var color: Colors?
-    var image: ImagesLG?
+    
+    var color: Colors? //Preciso alimentar com a cor selecionada
+    var image: ImagesLG? // Preciso alimentar com a imagem selecionada
+    
     var studyPlan: StudyPlan?
     let id = String(Date().timeIntervalSince1970)
     
@@ -83,12 +85,7 @@ final class StudyPlanViewController: UIViewController{
     }()
     
     lazy var colorsCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: 80, height: 80)
-        layout.scrollDirection = .horizontal
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.init())
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.layer.masksToBounds = false
@@ -96,24 +93,28 @@ final class StudyPlanViewController: UIViewController{
         collectionView.backgroundColor = .clear
         collectionView.register(ColorCollectionCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.allowsSelection = true
+        let layout = UICollectionViewFlowLayout.init()
+        layout.scrollDirection = .horizontal
+        collectionView.setCollectionViewLayout(layout, animated: false)
         return collectionView
     }()
     
     lazy var cvLanguages: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: 50, height: 40)
-        layout.scrollDirection = .horizontal
         
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.init())
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.layer.masksToBounds = false
         collectionView.layer.cornerRadius = 10
-        collectionView.backgroundColor = .yellow
+        collectionView.delaysContentTouches = false
+        collectionView.backgroundColor = .clear
         collectionView.register(ImagesCollectionCell.self, forCellWithReuseIdentifier: "cell2")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.allowsSelection = true
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
+        layout.scrollDirection = .horizontal
+        collectionView.setCollectionViewLayout(layout, animated: false)
         return collectionView
     }()
     
@@ -152,8 +153,10 @@ final class StudyPlanViewController: UIViewController{
     
     @objc func schedule(sender: UIButton!) {
         let note = Note(color: color, image: image, noteText: txtNote.text)
-        studyPlan = StudyPlan(topic: firstTextfield.text!, subjectName: secondTextField.text!, date: dpDate.date, done: false, id: id, note: note)
+        self.studyPlan = StudyPlan(topic: firstTextfield.text!, subjectName: secondTextField.text!, date: dpDate.date, done: false, id: id, note: note, checkTimes: .zero )
         buildNotification()
+        
+        
         navigationController?.popViewController(animated: true)
     }
 
@@ -171,6 +174,7 @@ final class StudyPlanViewController: UIViewController{
         content.categoryIdentifier = "Lembrete"
         
         let dateComponents = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute], from: dpDate.date)
+        print(dpDate.date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request,withCompletionHandler: nil)
@@ -179,7 +183,7 @@ final class StudyPlanViewController: UIViewController{
     }
 }
 
-extension StudyPlanViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension StudyPlanViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == colorsCollection {
             return colors.count
@@ -193,17 +197,13 @@ extension StudyPlanViewController: UICollectionViewDelegate, UICollectionViewDat
         if collectionView == colorsCollection {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ColorCollectionCell
             
-            cell.color = colors[indexPath.row]
-            cell.onUpdate = { color in
-                self.color = color
-            }
+            //cell.color = colors[indexPath.row]
+            cell.setupCell(with: colors[indexPath.row].value)
             return cell
+            
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! ImagesCollectionCell
-            cell.choosedImage = images[indexPath.row]
-            cell.onUpdate = { image in
-                self.image = image
-            }
+            cell.setupCell(with: images[indexPath.row])
             return cell
         }
         
@@ -211,12 +211,14 @@ extension StudyPlanViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == cvLanguages {
-            let cell = collectionView.cellForItem(at: indexPath) as! ImagesCollectionCell
-            cell.isSelected = true
+            self.image = images[indexPath.row]
         } else {
-            let cell = collectionView.cellForItem(at: indexPath) as! ColorCollectionCell
-            cell.isSelected = true
+            self.color = colors[indexPath.row]
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 60, height: 60)
     }
 }
 
