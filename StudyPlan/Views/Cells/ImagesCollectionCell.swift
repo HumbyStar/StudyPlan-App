@@ -18,18 +18,14 @@ final class ImagesCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var onUpdate:(ImagesLG) -> Void = {_ in}
-    
-    var choosedImage: ImagesLG? = nil  {
+    override var isSelected: Bool {
         didSet {
-            bannerImage.image = UIImage(named: choosedImage?.rawValue ?? "")
+            self.backgroundColor = isSelected ? .systemPurple : .clear
         }
     }
     
-    override var isSelected: Bool {
-        didSet {
-            backgroundColor = isSelected ? UIColor.systemGroupedBackground : .clear
-        }
+    func setupCell(with image: ImagesLG) {
+        self.bannerImage.image = UIImage(named: image.rawValue)
     }
     
     lazy var bannerImage: UIImageView = {
@@ -38,41 +34,20 @@ final class ImagesCollectionCell: UICollectionViewCell {
         image.contentMode = .scaleAspectFill
         return image
     }()
-    
-    lazy var btSendImage: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(nil, for: .normal)
-        button.addTarget(StudyPlanViewController(), action: #selector(sendImage), for: .touchUpInside)
-        return button
-    }()
-    
-    @objc func sendImage() {
-        if let image = choosedImage {
-            onUpdate(image)
-        }
-    }
-    
+
 }
 
 extension ImagesCollectionCell: ViewCode {
     func buildHierarchy() {
         addSubview(bannerImage)
-        addSubview(btSendImage)
     }
     func setupConstrains() {
         NSLayoutConstraint.activate([
-            bannerImage.topAnchor.constraint(equalTo: topAnchor),
-            bannerImage.leadingAnchor.constraint(equalTo: leadingAnchor),
-            bannerImage.trailingAnchor.constraint(equalTo: trailingAnchor),
-            bannerImage.bottomAnchor.constraint(equalTo: bottomAnchor),
-            btSendImage.topAnchor.constraint(equalTo: topAnchor),
-            btSendImage.leadingAnchor.constraint(equalTo: leadingAnchor),
-            btSendImage.trailingAnchor.constraint(equalTo: trailingAnchor),
-            btSendImage.bottomAnchor.constraint(equalTo: bottomAnchor)
+            self.bannerImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.bannerImage.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            self.bannerImage.widthAnchor.constraint(equalToConstant: 50),
+            self.bannerImage.heightAnchor.constraint(equalToConstant: 50)
+            
         ])
-    }
-    func extrasFeatures() {
-        backgroundColor = .clear
     }
 }

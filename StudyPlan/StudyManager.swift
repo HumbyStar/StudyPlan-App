@@ -41,4 +41,8 @@ final class StudyManager {
             studyPlan.done = true
         }
     }
+    
+    func getPlanNote(id: String) -> StudyPlan? {
+        return studyPlan.first(where: {$0.id == id})
+    }
 }

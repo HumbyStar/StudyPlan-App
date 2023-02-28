@@ -50,6 +50,7 @@ final class StudyPlanTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        prepareView()
         tableView.reloadData()
         getNotification()
         NotificationCenter.default.addObserver(self, selector: #selector(getNotification), name: NSNotification.Name("Refresh"), object: nil)
@@ -113,17 +114,29 @@ final class StudyPlanTableViewController: UITableViewController {
     
     @objc func onReceived(notification: Notification) {
         if let userInfo = notification.userInfo, let id = userInfo["id"] as? String { // Apesar de não precisar usar nesse cenário, esse código seria o utilizado para um interligar as telas como por exemplo um retorno de SceneDelegate
-            sm.setDonePlan(id: id)
+            //sm.setDonePlan(id: id)
             tableView.reloadData()
+            let noteViewController = NoteViewController()
+            noteViewController.id = id
+            navigationController?.present(noteViewController, animated: true)
         }
+        
+       
+        
     }
 
     func prepareView() {
         view.backgroundColor = .white
-        navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        if self.navigationController?.navigationBar.prefersLargeTitles == false {
+            print("Sou false")
+        } else {
+            print("Sou true")
+        }
+        self.navigationItem.largeTitleDisplayMode = .always
+        self.navigationItem.title = "Planos de Estudo"
         let attributes = [NSAttributedString.Key.foregroundColor: UIColor.purple, NSAttributedString.Key.font: UIFont(name: "Georgia", size: 30)!]
         navigationController?.navigationBar.largeTitleTextAttributes = attributes
-        title = "Planos de Estudo"
         let btPlus = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(push))
         navigationItem.rightBarButtonItem = btPlus
     }
@@ -166,6 +179,14 @@ final class StudyPlanTableViewController: UITableViewController {
             sm.removePlan(index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let id = sm.studyPlan[indexPath.row].id
+        let noteViewController = NoteViewController()
+        noteViewController.id = id
+        navigationController?.present(noteViewController, animated: true)
+        
     }
 }
 

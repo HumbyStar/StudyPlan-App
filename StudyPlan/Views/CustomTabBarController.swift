@@ -11,8 +11,6 @@ import UIKit
 final class CustomTabBarController: UITabBarController {
     
     //MARK: Hierarquia de Views
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,4 +37,5 @@ final class CustomTabBarController: UITabBarController {
         //Define third configuration
         self.tabBar.tintColor = .purple
     }
+    
 }

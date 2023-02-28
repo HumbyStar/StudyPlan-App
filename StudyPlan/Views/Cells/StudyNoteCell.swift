@@ -41,17 +41,17 @@ final class StudyNoteCell: UITableViewCell {
     
     lazy var divView: UIView = {
         let view = UIView()
-        view.backgroundColor = .purple
+        view.backgroundColor = .clear
         view.widthAnchor.constraint(equalToConstant: 1).isActive = true
-        view.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        view.heightAnchor.constraint(equalToConstant: 40).isActive = true
         return view
     }()
     
     lazy var divView2: UIView = {
         let view = UIView()
-        view.backgroundColor = .purple
+        view.backgroundColor = .clear
         view.widthAnchor.constraint(equalToConstant: 1).isActive = true
-        view.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        view.heightAnchor.constraint(equalToConstant: 40).isActive = true
         return view
     }()
     
