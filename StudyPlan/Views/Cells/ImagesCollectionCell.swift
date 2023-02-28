@@ -28,7 +28,7 @@ final class ImagesCollectionCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            backgroundColor = isSelected ? UIColor.systemGroupedBackground : .clear
+            self.backgroundColor = isSelected ? UIColor.systemGroupedBackground : .clear
         }
     }
     
@@ -73,6 +73,6 @@ extension ImagesCollectionCell: ViewCode {
         ])
     }
     func extrasFeatures() {
-        backgroundColor = .clear
+       
     }
 }

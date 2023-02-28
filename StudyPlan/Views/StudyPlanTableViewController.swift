@@ -86,6 +86,7 @@ final class StudyPlanTableViewController: UITableViewController {
         }
         let confirmAction = UNNotificationAction(identifier: "Confirmar", title: "Abrir Notas p/ Revisão 🤩", options: [.foreground])
         let cancelAction = UNNotificationAction(identifier: "Cancelar", title: "Deixar pra depois 👎🏻")
+        
         let category = UNNotificationCategory(identifier:"Lembrete", actions: [confirmAction, cancelAction], intentIdentifiers: [], options: .customDismissAction)
         center.setNotificationCategories([category])
     }
@@ -180,6 +181,7 @@ extension StudyPlanTableViewController: UNUserNotificationCenterDelegate {
         switch response.actionIdentifier {
         case "Confirmar":
             print("Confirmado")
+            
             NotificationCenter.default.post(name: NSNotification.Name("Confirmed"), object: nil, userInfo: ["id":id])
         case "Cancelar":
             print("Cancelado")

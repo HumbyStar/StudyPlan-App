@@ -91,7 +91,6 @@ final class StudyPlanViewController: UIViewController{
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.showsHorizontalScrollIndicator = false
         collectionView.layer.masksToBounds = false
         collectionView.layer.cornerRadius = 10
         collectionView.backgroundColor = .clear
@@ -109,12 +108,12 @@ final class StudyPlanViewController: UIViewController{
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.showsHorizontalScrollIndicator = false
         collectionView.layer.masksToBounds = false
         collectionView.layer.cornerRadius = 10
-        collectionView.backgroundColor = .clear
+        collectionView.backgroundColor = .yellow
         collectionView.register(ImagesCollectionCell.self, forCellWithReuseIdentifier: "cell2")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.allowsSelection = true
         return collectionView
     }()
     
@@ -300,7 +299,7 @@ extension StudyPlanViewController: UITextFieldDelegate {
             let maxLenght = 12
             let currentText: NSString = textField.text! as NSString
             let newString: NSString = currentText.replacingCharacters(in: range, with: string) as NSString
-            return newString.length <= maxLenght //y
+            return newString.length <= maxLenght
         } else {
             let maxLenght = 16
             let currentText: NSString = textField.text! as NSString
