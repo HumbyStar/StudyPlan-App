@@ -14,7 +14,7 @@ final class CustomTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("hello")
         //Instantiate ViewController
         let studyPlanTVC = StudyPlanTableViewController()
         let settingsVC = SettingsViewController()
